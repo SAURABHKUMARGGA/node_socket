@@ -20,5 +20,28 @@
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+      const socket = io();
+      const msgval = document.getElementById("input");
+      const btn = document.getElementById("form");
+      const ul = document.getElementById("messages");
+
+      
+      
+      btn.addEventListener("click",(e)=>{
+        e.preventDefault();
+        socket.emit("message",msgval.value);
+        msgval.value = "";
+      })
+      socket.on("newmessage",(msg)=>{
+        console.log(msg);
+        const li = document.createElement("li");
+        li.textContent = msg;
+        ul.appendChild(li);
+        window.scrollTo(0, document.body.scrollHeight);
+      })
+    </script>
   </body>
 </html>

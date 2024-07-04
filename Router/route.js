@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 router.route('/')
     .get((req, res) => {
         // res.send('Hello World');
-        console.log(__dirname);
+        // console.log(__dirname);
         // res.send("ok");
         res.sendFile(path.join(__dirname,'../pages/msg.html'));
     });
